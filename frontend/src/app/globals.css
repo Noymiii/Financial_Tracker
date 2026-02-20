@@ -1,0 +1,152 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+}
+
+/* Configure dark mode to use class strategy */
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+
+  /* App custom variables */
+  --color-bg-primary: #f9fafb;
+  --color-bg-secondary: #ffffff;
+  --color-text-primary: #111827;
+  --color-text-secondary: #6b7280;
+  --color-accent: #10b981;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+
+  /* Overriding app custom variables for dark mode */
+  --color-bg-primary: #030712;
+  /* gray-950 */
+  --color-bg-secondary: #111827;
+  /* gray-900 */
+  --color-text-primary: #f9fafb;
+  /* gray-50 */
+  --color-text-secondary: #9ca3af;
+  /* gray-400 */
+  --color-accent: #10b981;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.1) transparent;
+}
+
+body {
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  min-height: 100vh;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+/* Animated gradient background */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at 20% 50%,
+      rgba(16, 185, 129, 0.06) 0%,
+      transparent 50%),
+    radial-gradient(ellipse at 80% 20%,
+      rgba(6, 182, 212, 0.06) 0%,
+      transparent 50%),
+    radial-gradient(ellipse at 50% 80%,
+      rgba(139, 92, 246, 0.04) 0%,
+      transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Input focus animations */
+input:focus,
+select:focus {
+  outline: none;
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Pulse glow */
+@keyframes pulseGlow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.15);
+  }
+
+  50% {
+    box-shadow: 0 0 40px rgba(16, 185, 129, 0.3);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+/* Modal backdrop */
+@keyframes modalBackdrop {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-modal-backdrop {
+  animation: modalBackdrop 0.2s ease-out forwards;
+}
+
+/* Modal slide up */
+@keyframes modalSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-modal-slide-up {
+  animation: modalSlideUp 0.25s ease-out forwards;
+}
