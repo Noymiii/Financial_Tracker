@@ -5,6 +5,7 @@ export const dynamic = "force-dynamic";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
+import { ArrowRight, Mail, Lock, Sparkles, Loader2 } from "lucide-react";
 
 export default function LoginPage() {
     const router = useRouter();
@@ -40,100 +41,117 @@ export default function LoginPage() {
     };
 
     return (
-        <div className="flex min-h-screen items-center justify-center px-4">
-            <div className="w-full max-w-md animate-fade-in">
-                {/* Logo */}
-                <div className="mb-8 text-center">
-                    <span className="inline-block text-emerald-400">
-                        <svg className="w-16 h-16 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 14l9-5-9-5-9 5 9 5z" />
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 14v7" />
-                        </svg>
-                    </span>
-                    <h1 className="mt-4 text-3xl font-bold">
+        <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#0a0f18] px-4 font-sans selection:bg-emerald-500/30">
+            {/* Animated Ambient Background Objects */}
+            <div className="absolute top-1/4 -left-20 h-[500px] w-[500px] rounded-full bg-emerald-600/20 blur-[120px] animate-pulse pointer-events-none" />
+            <div className="absolute bottom-1/4 -right-20 h-[600px] w-[600px] rounded-full bg-cyan-600/10 blur-[150px] animate-pulse pointer-events-none" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[800px] w-[800px] rounded-full bg-blue-900/10 blur-[100px] pointer-events-none" />
+
+            {/* Subtle Grain Overlay */}
+            <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.03] mix-blend-overlay pointer-events-none"></div>
+
+            <div className="relative w-full max-w-[420px] z-10 animate-fade-in-up">
+                {/* Brand Header */}
+                <div className="mb-10 text-center">
+                    <div className="inline-flex items-center justify-center p-3 mb-5 rounded-2xl bg-gradient-to-br from-emerald-500/10 to-emerald-500/5 ring-1 ring-emerald-500/20 shadow-[0_0_40px_-10px_rgba(16,185,129,0.3)]">
+                        <Sparkles className="w-8 h-8 text-emerald-400" strokeWidth={1.5} />
+                    </div>
+                    <h1 className="text-4xl font-extrabold tracking-tight">
+                        <span className="bg-gradient-to-br from-white to-white/60 bg-clip-text text-transparent">
+                            Lefstyle
+                        </span>{" "}
                         <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
-                            CEIS
+                            Student
                         </span>
                     </h1>
-                    <p className="mt-2 text-sm text-gray-500">
+                    <p className="mt-3 text-sm font-medium text-gray-400/80">
                         Campus Expense Intelligence System
                     </p>
                 </div>
 
-                {/* Card */}
-                <div className="rounded-2xl border border-white/10 bg-gray-900/50 p-8 backdrop-blur-sm">
-                    <h2 className="mb-6 text-xl font-semibold text-white">
-                        {isSignUp ? "Create Account" : "Welcome Back"}
+                {/* Glassmorphism Card */}
+                <div className="relative rounded-3xl border border-white/10 bg-[#0f1724]/60 backdrop-blur-2xl p-8 sm:p-10 shadow-[0_8px_32px_rgba(0,0,0,0.5)] transition-all duration-300">
+                    <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-white/5 to-transparent pointer-events-none" />
+
+                    <h2 className="mb-8 text-2xl font-bold text-white text-center">
+                        {isSignUp ? "Create an account" : "Welcome back"}
                     </h2>
 
-                    <form onSubmit={handleSubmit} className="space-y-4">
-                        <div>
-                            <label className="mb-1.5 block text-sm font-medium text-gray-400">
-                                Email
-                            </label>
-                            <input
-                                type="email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                placeholder="student@university.edu"
-                                className="w-full rounded-xl border border-white/10 bg-gray-800/50 py-3 px-4 text-white placeholder-gray-600 transition-colors focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/25"
-                                required
-                            />
-                        </div>
+                    <form onSubmit={handleSubmit} className="relative space-y-5">
+                        <div className="space-y-4">
+                            {/* Email Input */}
+                            <div className="relative group">
+                                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-500 group-focus-within:text-emerald-400 transition-colors">
+                                    <Mail className="h-5 w-5" strokeWidth={1.5} />
+                                </div>
+                                <input
+                                    type="email"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    placeholder="student@university.edu"
+                                    className="w-full rounded-2xl border border-white/5 bg-white/[0.03] py-3.5 pl-12 pr-4 text-white placeholder-gray-500/80 outline-none backdrop-blur-md transition-all focus:border-emerald-500/50 focus:bg-white/[0.05] focus:ring-4 focus:ring-emerald-500/10"
+                                    required
+                                />
+                            </div>
 
-                        <div>
-                            <label className="mb-1.5 block text-sm font-medium text-gray-400">
-                                Password
-                            </label>
-                            <input
-                                type="password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                placeholder="••••••••"
-                                minLength={6}
-                                className="w-full rounded-xl border border-white/10 bg-gray-800/50 py-3 px-4 text-white placeholder-gray-600 transition-colors focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/25"
-                                required
-                            />
+                            {/* Password Input */}
+                            <div className="relative group">
+                                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-500 group-focus-within:text-emerald-400 transition-colors">
+                                    <Lock className="h-5 w-5" strokeWidth={1.5} />
+                                </div>
+                                <input
+                                    type="password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    placeholder="••••••••"
+                                    minLength={6}
+                                    className="w-full rounded-2xl border border-white/5 bg-white/[0.03] py-3.5 pl-12 pr-4 text-white placeholder-gray-500/80 outline-none backdrop-blur-md transition-all focus:border-emerald-500/50 focus:bg-white/[0.05] focus:ring-4 focus:ring-emerald-500/10"
+                                    required
+                                />
+                            </div>
                         </div>
 
                         {error && (
-                            <p
-                                className={`rounded-lg px-3 py-2 text-sm ${error.includes("Check your email")
-                                    ? "bg-emerald-500/10 text-emerald-400"
-                                    : "bg-red-500/10 text-red-400"
-                                    }`}
-                            >
+                            <div className="p-4 rounded-2xl bg-red-500/10 border border-red-500/20 text-sm text-red-200 text-center animate-shake">
                                 {error}
-                            </p>
+                            </div>
                         )}
 
                         <button
                             type="submit"
                             disabled={loading}
-                            className="w-full rounded-xl bg-gradient-to-r from-emerald-500 to-cyan-500 py-3 text-sm font-bold text-white shadow-lg shadow-emerald-500/25 transition-all hover:shadow-emerald-500/40 disabled:opacity-50"
+                            className="group relative w-full overflow-hidden rounded-2xl bg-white text-[#0a0f18] font-semibold py-3.5 px-4 transition-all hover:bg-gray-100 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-70 disabled:hover:scale-100 disabled:cursor-not-allowed"
                         >
-                            {loading
-                                ? "Loading..."
-                                : isSignUp
-                                    ? "Sign Up"
-                                    : "Sign In"}
+                            <span className="relative z-10 flex items-center justify-center gap-2">
+                                {loading ? (
+                                    <>
+                                        <Loader2 className="h-5 w-5 animate-spin" strokeWidth={2} />
+                                        Authenticating...
+                                    </>
+                                ) : (
+                                    <>
+                                        {isSignUp ? "Sign Up" : "Sign In"}
+                                        <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" strokeWidth={2} />
+                                    </>
+                                )}
+                            </span>
                         </button>
-                    </form>
 
-                    <div className="mt-6 text-center">
-                        <button
-                            onClick={() => {
-                                setIsSignUp(!isSignUp);
-                                setError("");
-                            }}
-                            className="text-sm text-gray-500 transition-colors hover:text-emerald-400"
-                        >
-                            {isSignUp
-                                ? "Already have an account? Sign in"
-                                : "Don't have an account? Sign up"}
-                        </button>
-                    </div>
+                        <div className="pt-2 text-center text-sm font-medium text-gray-400">
+                            {isSignUp ? "Already have an account?" : "Don't have an account?"}{" "}
+                            <button
+                                type="button"
+                                onClick={() => setIsSignUp(!isSignUp)}
+                                className="text-white hover:text-emerald-400 transition-colors underline decoration-white/20 hover:decoration-emerald-400/50 underline-offset-4"
+                            >
+                                {isSignUp ? "Sign In" : "Sign Up"}
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <div className="mt-8 text-center text-xs text-gray-600 font-medium tracking-wide pb-10">
+                    SECURE ENCRYPTED CONNECTION
                 </div>
             </div>
         </div>
