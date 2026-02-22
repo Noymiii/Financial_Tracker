@@ -23,7 +23,7 @@ from backend.telegram_handlers import (
 from backend.telegram_helpers import handle_history
 
 logger = logging.getLogger(__name__)
-router = APIRouter(prefix="/telegram", tags=["telegram"])
+router = APIRouter(prefix="/api/telegram", tags=["telegram"])
 
 _app: Application | None = None
 
@@ -54,8 +54,6 @@ async def telegram_webhook(request: Request) -> dict:
     """Receive and process Telegram webhook updates."""
     app = await get_telegram_app()
     data = await request.json()
-    update = Update.de_json(data, app.bot)
-    await app.process_update(update)
     update = Update.de_json(data, app.bot)
     await app.process_update(update)
     return {"status": "ok"}
