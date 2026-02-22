@@ -1,4 +1,5 @@
 {
+    "name": "financial-ai",
     "version": 2,
     "builds": [
         {
