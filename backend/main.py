@@ -412,10 +412,28 @@ async def update_schedule(
 async def get_ai_advice(
     user_id: str = Depends(verify_jwt),
 ):
-    """Get AI financial advice (auth required)."""
-    # Gather financial data
+    """Get AI financial advice with full financial context (auth required)."""
+    # Gather all financial data for a complete analysis
     runway_data = transaction_service.get_runway_summary(user_id, days=30)
-    
+
+    # Add expenses by category
+    try:
+        categories = transaction_service.get_expenses_by_category(user_id)
+        runway_data["expenses_by_category"] = categories
+    except Exception:
+        runway_data["expenses_by_category"] = []
+
+    # Add bill details
+    try:
+        from backend.fixed_cost_service import get_period_reserve
+        from datetime import date, timedelta
+        reserve = get_period_reserve(
+            user_id, date.today(), date.today() + timedelta(days=30)
+        )
+        runway_data["bills"] = reserve.get("bills", [])
+    except Exception:
+        runway_data["bills"] = []
+
     advice = ai_service.get_financial_advice(
         user_profile={"id": user_id},
         financial_data=runway_data

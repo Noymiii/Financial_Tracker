@@ -5,8 +5,6 @@ import { usePathname } from "next/navigation";
 import {
     LayoutDashboard,
     CreditCard,
-    TrendingUp,
-    Heart,
     Leaf,
     LogOut,
     User,
@@ -15,14 +13,12 @@ import {
     BookOpen,
 } from "lucide-react";
 import { supabase } from "@/lib/supabase";
-
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { apiGet } from "@/lib/api";
 
 export default function Sidebar() {
     const pathname = usePathname();
-
     const router = useRouter();
     const [displayName, setDisplayName] = useState("User");
 
@@ -57,30 +53,33 @@ export default function Sidebar() {
     ];
 
     return (
-        <aside className="fixed left-0 top-0 h-screen w-64 border-r border-gray-100 bg-white p-6 hidden lg:flex flex-col justify-between dark:bg-gray-900 dark:border-gray-800 transition-colors">
+        <aside className="fixed left-0 top-0 h-screen w-[260px] bg-white border-r border-gray-100 p-5 hidden lg:flex flex-col justify-between dark:bg-gray-900 dark:border-gray-800 transition-colors z-30">
             <div>
-                {/* Logo */}
-                <div className="mb-10 flex items-center gap-2 px-2">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-100 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400">
-                        <Leaf size={20} />
+                {/* Logo — matching mockup: leaf icon + Lefstyle Student */}
+                <div className="mb-8 flex items-center gap-3 px-3 pt-2">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-500">
+                        <Leaf size={22} />
                     </div>
-                    <span className="text-xl font-bold text-gray-900 dark:text-white">Lefstyle Student</span>
+                    <div>
+                        <span className="text-lg font-bold text-gray-900 dark:text-white leading-tight block">Lefstyle</span>
+                        <span className="text-[11px] font-semibold text-gray-400 dark:text-gray-500 leading-none block">Student</span>
+                    </div>
                 </div>
 
-                {/* Navigation */}
-                <nav className="space-y-1">
+                {/* Navigation — green active state pill like mockup */}
+                <nav className="space-y-1 px-1">
                     {navItems.map((item) => {
                         const isActive = pathname === item.href;
                         return (
                             <Link
                                 key={item.name}
                                 href={item.href}
-                                className={`flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-colors ${isActive
-                                    ? "bg-gray-100/80 text-gray-900 dark:bg-gray-800 dark:text-white"
+                                className={`flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-all duration-200 ${isActive
+                                    ? "bg-emerald-500 text-white shadow-md shadow-emerald-500/25"
                                     : "text-gray-500 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-white"
                                     }`}
                             >
-                                <item.icon size={18} />
+                                <item.icon size={18} strokeWidth={isActive ? 2 : 1.5} />
                                 {item.name}
                             </Link>
                         );
@@ -88,23 +87,21 @@ export default function Sidebar() {
                 </nav>
             </div>
 
-            <div className="space-y-6">
-
-
-                {/* User Profile */}
-                <div className="flex items-center justify-between border-t border-gray-100 pt-4 px-2 dark:border-gray-800">
+            {/* User Profile Footer — matching mockup */}
+            <div className="border-t border-gray-100 dark:border-gray-800 pt-4 px-2">
+                <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-100 text-gray-500 dark:bg-gray-800 dark:text-gray-400">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-50 text-emerald-600 dark:bg-gray-800 dark:text-gray-400">
                             <User size={16} />
                         </div>
-                        <div className="text-xs">
-                            <p className="font-medium text-gray-900 dark:text-white">{displayName}</p>
-                            <p className="text-gray-400">Basic Plan</p>
+                        <div>
+                            <p className="text-sm font-semibold text-gray-900 dark:text-white leading-tight">{displayName}</p>
+                            <p className="text-xs text-gray-400 dark:text-gray-500">Premium Account</p>
                         </div>
                     </div>
                     <button
                         onClick={handleLogout}
-                        className="text-gray-400 hover:text-red-500 transition-colors"
+                        className="p-2 rounded-lg text-gray-400 hover:bg-red-50 hover:text-red-500 transition-all dark:hover:bg-red-900/20"
                         title="Logout"
                     >
                         <LogOut size={16} />

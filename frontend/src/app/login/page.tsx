@@ -44,7 +44,13 @@ export default function LoginPage() {
             <div className="w-full max-w-md animate-fade-in">
                 {/* Logo */}
                 <div className="mb-8 text-center">
-                    <span className="text-5xl">🎓</span>
+                    <span className="inline-block text-emerald-400">
+                        <svg className="w-16 h-16 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 14l9-5-9-5-9 5 9 5z" />
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 14v7" />
+                        </svg>
+                    </span>
                     <h1 className="mt-4 text-3xl font-bold">
                         <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
                             CEIS

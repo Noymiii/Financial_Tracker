@@ -135,14 +135,14 @@ export default function SchedulePage() {
                                 }
                             </div>
                             <span className={`text-xs font-bold uppercase tracking-wide ${day.has_class
-                                    ? "text-violet-700 dark:text-violet-300"
-                                    : "text-gray-500 dark:text-gray-400"
+                                ? "text-violet-700 dark:text-violet-300"
+                                : "text-gray-500 dark:text-gray-400"
                                 }`}>
                                 {dayShort[day.day_of_week]}
                             </span>
                             <span className={`text-[10px] font-medium ${day.has_class
-                                    ? "text-violet-500 dark:text-violet-400"
-                                    : "text-gray-400 dark:text-gray-500"
+                                ? "text-violet-500 dark:text-violet-400"
+                                : "text-gray-400 dark:text-gray-500"
                                 }`}>
                                 {day.has_class ? "Class" : "Free"}
                             </span>
@@ -227,7 +227,7 @@ export default function SchedulePage() {
 
                 {multiplier === 1.0 && (
                     <p className="text-xs text-amber-600 dark:text-amber-400 mt-3 font-medium">
-                        💡 Tip: Set the multiplier above 1.0× to allocate more budget for school days.
+                        Tip: Set the multiplier above 1.0× to allocate more budget for school days.
                     </p>
                 )}
             </div>

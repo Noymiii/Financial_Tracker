@@ -138,7 +138,11 @@ export default function TrendsPage() {
                 {chartData.length === 0 ? (
                     /* Empty state */
                     <div className="animate-fade-in flex flex-col items-center justify-center rounded-2xl border border-gray-100 bg-white py-20 shadow-sm">
-                        <span className="text-5xl mb-4">📊</span>
+                        <div className="mb-4 h-12 w-12 rounded-full bg-gray-100 flex items-center justify-center text-gray-400">
+                            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                            </svg>
+                        </div>
                         <h2 className="text-xl font-semibold text-gray-900">
                             No snapshot data yet
                         </h2>
@@ -152,7 +156,7 @@ export default function TrendsPage() {
                         {/* Balance Chart */}
                         <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
                             <h2 className="mb-4 text-lg font-semibold text-gray-900">
-                                💰 Balance
+                                Balance
                             </h2>
                             <ResponsiveContainer width="100%" height={250}>
                                 <AreaChart data={chartData}>
@@ -219,7 +223,7 @@ export default function TrendsPage() {
                             {/* Burn Rate Chart */}
                             <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
                                 <h2 className="mb-4 text-lg font-semibold text-gray-900">
-                                    🔥 Burn Rate
+                                    Burn Rate
                                 </h2>
                                 <ResponsiveContainer width="100%" height={220}>
                                     <LineChart data={chartData}>
@@ -266,7 +270,7 @@ export default function TrendsPage() {
                             {/* Runway Chart */}
                             <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
                                 <h2 className="mb-4 text-lg font-semibold text-gray-900">
-                                    📅 Runway Days
+                                    Runway Days
                                 </h2>
                                 <ResponsiveContainer width="100%" height={220}>
                                     <LineChart data={chartData}>

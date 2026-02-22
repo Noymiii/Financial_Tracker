@@ -84,25 +84,25 @@ export default function TransactionsPage() {
         <div className="max-w-5xl mx-auto">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
                 <div>
-                    <h1 className="text-2xl font-bold text-gray-900">Transactions</h1>
-                    <p className="text-sm text-gray-500">Manage your financial history</p>
+                    <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Transactions</h1>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">Manage your financial history</p>
                 </div>
 
                 <div className="flex gap-2">
                     <div className="relative">
-                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400 dark:text-gray-500" />
                         <input
                             type="text"
                             placeholder="Search..."
                             value={search}
                             onChange={(e) => setSearch(e.target.value)}
-                            className="pl-9 pr-4 py-2 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500"
+                            className="pl-9 pr-4 py-2 rounded-lg border border-gray-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 dark:focus:ring-emerald-500/40"
                         />
                     </div>
                     <select
                         value={filter}
                         onChange={(e) => setFilter(e.target.value)}
-                        className="px-4 py-2 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 bg-white"
+                        className="px-4 py-2 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 dark:focus:ring-emerald-500/40"
                     >
                         <option value="all">All</option>
                         <option value="expense">Expenses</option>
@@ -111,9 +111,9 @@ export default function TransactionsPage() {
                 </div>
             </div>
 
-            <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+            <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden dark:bg-gray-900 dark:border-gray-800">
                 <table className="w-full text-left text-sm">
-                    <thead className="bg-gray-50/50 text-xs font-medium text-gray-500 border-b border-gray-100">
+                    <thead className="bg-gray-50/50 text-xs font-medium text-gray-500 border-b border-gray-100 dark:bg-gray-800/50 dark:text-gray-400 dark:border-gray-800">
                         <tr>
                             <th className="px-6 py-4">Date</th>
                             <th className="px-6 py-4">Description</th>
@@ -122,16 +122,16 @@ export default function TransactionsPage() {
                             <th className="px-6 py-4 text-center">Actions</th>
                         </tr>
                     </thead>
-                    <tbody className="divide-y divide-gray-50">
+                    <tbody className="divide-y divide-gray-50 dark:divide-gray-800">
                         {filteredTransactions.length === 0 ? (
                             <tr>
-                                <td colSpan={5} className="px-6 py-12 text-center text-gray-500">
+                                <td colSpan={5} className="px-6 py-12 text-center text-gray-500 dark:text-gray-400">
                                     No transactions found.
                                 </td>
                             </tr>
                         ) : (
                             filteredTransactions.map((txn) => (
-                                <tr key={txn.id} className="hover:bg-gray-50/50 transition-colors group">
+                                <tr key={txn.id} className="hover:bg-gray-50/50 transition-colors group dark:hover:bg-gray-800/50">
                                     {editingId === txn.id ? (
                                         <>
                                             <td className="px-6 py-4">
@@ -139,7 +139,7 @@ export default function TransactionsPage() {
                                                     type="date"
                                                     value={editForm.transaction_date?.split('T')[0]}
                                                     onChange={e => setEditForm({ ...editForm, transaction_date: e.target.value })}
-                                                    className="w-full rounded border-gray-200 text-xs p-1"
+                                                    className="w-full rounded border-gray-200 text-xs p-1 bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                                                 />
                                             </td>
                                             <td className="px-6 py-4">
@@ -147,7 +147,7 @@ export default function TransactionsPage() {
                                                     type="text"
                                                     value={editForm.description}
                                                     onChange={e => setEditForm({ ...editForm, description: e.target.value })}
-                                                    className="w-full rounded border-gray-200 text-xs p-1"
+                                                    className="w-full rounded border-gray-200 text-xs p-1 bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                                                 />
                                             </td>
                                             <td className="px-6 py-4">
@@ -155,7 +155,7 @@ export default function TransactionsPage() {
                                                     type="text"
                                                     value={editForm.category}
                                                     onChange={e => setEditForm({ ...editForm, category: e.target.value })}
-                                                    className="w-full rounded border-gray-200 text-xs p-1"
+                                                    className="w-full rounded border-gray-200 text-xs p-1 bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                                                 />
                                             </td>
                                             <td className="px-6 py-4 text-right">
@@ -163,38 +163,38 @@ export default function TransactionsPage() {
                                                     type="number"
                                                     value={editForm.amount}
                                                     onChange={e => setEditForm({ ...editForm, amount: Number(e.target.value) })}
-                                                    className="w-24 rounded border-gray-200 text-xs p-1 text-right ml-auto"
+                                                    className="w-24 rounded border-gray-200 text-xs p-1 text-right ml-auto bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                                                 />
                                             </td>
                                             <td className="px-6 py-4">
                                                 <div className="flex items-center justify-center gap-2">
-                                                    <button onClick={saveEdit} className="p-1 text-emerald-600 hover:bg-emerald-50 rounded"><Check size={16} /></button>
-                                                    <button onClick={cancelEdit} className="p-1 text-gray-400 hover:bg-gray-100 rounded"><X size={16} /></button>
+                                                    <button onClick={saveEdit} className="p-1 text-emerald-600 hover:bg-emerald-50 rounded dark:text-emerald-400 dark:hover:bg-emerald-900/30"><Check size={16} /></button>
+                                                    <button onClick={cancelEdit} className="p-1 text-gray-400 hover:bg-gray-100 rounded dark:text-gray-400 dark:hover:bg-gray-800"><X size={16} /></button>
                                                 </div>
                                             </td>
                                         </>
                                     ) : (
                                         <>
-                                            <td className="px-6 py-4 text-gray-500 w-32">
+                                            <td className="px-6 py-4 text-gray-500 dark:text-gray-400 w-32">
                                                 {format(new Date(txn.transaction_date), "MMM d, yyyy")}
                                             </td>
-                                            <td className="px-6 py-4 font-medium text-gray-900">
+                                            <td className="px-6 py-4 font-medium text-gray-900 dark:text-white">
                                                 {txn.description || "—"}
                                             </td>
                                             <td className="px-6 py-4">
-                                                <span className="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800">
+                                                <span className="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800 dark:bg-gray-800 dark:text-gray-200">
                                                     {txn.category}
                                                 </span>
                                             </td>
-                                            <td className={`px-6 py-4 text-right font-bold ${txn.transaction_type === 'income' ? 'text-emerald-600' : 'text-gray-900'}`}>
+                                            <td className={`px-6 py-4 text-right font-bold ${txn.transaction_type === 'income' ? 'text-emerald-600 dark:text-emerald-400' : 'text-gray-900 dark:text-white'}`}>
                                                 {txn.transaction_type === 'income' ? '+' : ''}₱{txn.amount.toLocaleString()}
                                             </td>
                                             <td className="px-6 py-4">
                                                 <div className="flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                                                    <button onClick={() => startEdit(txn)} className="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors">
+                                                    <button onClick={() => startEdit(txn)} className="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors dark:hover:text-blue-400 dark:hover:bg-blue-900/30">
                                                         <Edit2 size={14} />
                                                     </button>
-                                                    <button onClick={() => handleDelete(txn.id)} className="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors">
+                                                    <button onClick={() => handleDelete(txn.id)} className="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors dark:hover:text-red-400 dark:hover:bg-red-900/30">
                                                         <Trash2 size={14} />
                                                     </button>
                                                 </div>
