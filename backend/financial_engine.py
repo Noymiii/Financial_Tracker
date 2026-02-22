@@ -47,11 +47,11 @@ def calculate_runway(balance: float, burn_rate: float) -> float:
         burn_rate: Average daily expense.
 
     Returns:
-        Number of days until broke. Returns float('inf') if
-        burn_rate is zero (no spending).
+        Number of days until broke. Returns 9999.0 if
+        burn_rate is zero (no spending) to prevent JSON Inf errors.
     """
     if burn_rate <= 0:
-        return float("inf")
+        return 9999.0
     return round(balance / burn_rate, 1)
 
 
