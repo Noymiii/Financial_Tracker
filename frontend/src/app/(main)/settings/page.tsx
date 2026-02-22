@@ -271,7 +271,7 @@ export default function SettingsPage() {
                                         Expires in {Math.floor(tokenTime / 60)}:{(tokenTime % 60).toString().padStart(2, '0')}
                                     </p>
                                     <a
-                                        href="https://t.me/CEIS_Bot"
+                                        href="https://t.me/coral_financial_ai_bot"
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="inline-block mt-4 text-sky-400 hover:text-sky-300 text-sm font-medium"
